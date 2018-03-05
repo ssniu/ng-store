@@ -1,0 +1,54 @@
+<form [formGroup]="formModel" (ngSubmit)="onSearch()" novalidate>
+    <!-- prevent the default validator of browser -->
+    <div class="form-group" [class.has-error]="formModel.hasError('minlength','title')">
+        <label for="productTitle">Title:</label>
+        <input formControlName ="title" type="text" id="productTitle" placeholder="title"
+            class="form-control">
+            <span class="help-block" [hidden]="!formModel.hasError('minlength','title')">
+                At least 3 letters
+            </span>
+    </div>
+    <div class="form-group" [class.has-error]="formModel.hasError('positiveNumber','price')">
+        <label for="productPrice">Price:</label>
+        <input formControlName="price" type="number" id="productPrice" placeholder="price"
+            class="form-control">
+            <span class="help-block" [hidden]="!formModel.hasError('positiveNumber','price')">
+                Price should be positive
+            </span>
+    </div>
+    <div class="form-group">
+        <label for="productCategory">Category:</label>
+        <select  formControlName="category" type="text" id="productCategory"
+            class="form-control">
+            <option value="-1">All categories</option>
+            <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block">Search</button>
+    </div>
+</form>
+
+<!-- html template
+<form name="searchForm" role="form">
+    <div class="form-group">
+        <label for="productTitle">Title:</label>
+        <input type="text" id="productTitle" placeholder="title"
+            class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="productPrice">Price:</label>
+        <input type="text" id="productPrice" placeholder="price"
+            class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="productCategory">Category:</label>
+        <select type="text" id="productCategory"
+            class="form-control">
+        </select>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block">Search</button>
+    </div>
+</form>
+-->
